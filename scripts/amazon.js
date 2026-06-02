@@ -48,7 +48,8 @@ products.forEach((product) => {
             Added
         </div>
 
-        <button class="add-to-cart-button button-primary">
+        <button class="add-to-cart-button button-primary js-add-to-cart"
+        data-product-id="${product.id}">
             Add to Cart
         </button>
         </div>
@@ -56,5 +57,34 @@ products.forEach((product) => {
 })
 
 //fetch container to attach all products
-console.log(document.querySelector('.js-products-grid'));
 document.querySelector('.js-products-grid').innerHTML = productHTML;
+
+//make add to cart interactive
+document.querySelectorAll('.js-add-to-cart').
+forEach((button) => {
+    button.addEventListener('click', () => {
+        //console.log(button.dataset.productName);  //turn data-product-name --> productName
+
+        //add this data item to cart on click
+
+        const pressedItemId = button.dataset.productId;
+        let matchedInCart = '';
+
+        cart.forEach((product) => {
+            if(product.id === pressedItemId){
+                matchedInCart = product;
+            }
+        });
+        
+        //if found in card, increase quantity by 1, else add the product object to the cart.
+        if(matchedInCart){
+            matchedInCart.quantity += 1;
+        } else{
+            cart.push({
+                id: pressedItemId,
+                quantity: 1
+            });
+        }
+        console.log(cart);   //debug pointer: show the whole cart everytime a product is pressed
+    });
+})
