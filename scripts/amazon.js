@@ -85,6 +85,16 @@ forEach((button) => {
                 quantity: 1
             });
         }
-        console.log(cart);   //debug pointer: show the whole cart everytime a product is pressed
+        //console.log(cart);   //debug pointer: show the whole cart everytime a product is pressed
+
+        //update total quantity after adding
+        let totalQuantity = 0;
+
+        cart.forEach((item) => {
+            totalQuantity += item.quantity;
+        })
+
+        document.querySelector('.js-cart-quantity').innerHTML = totalQuantity;
+        console.log(totalQuantity);
     });
 })
