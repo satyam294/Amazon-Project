@@ -1,4 +1,6 @@
-//use products array from data/products.js
+//import should be at the beginning of the code.
+import {cart} from '../data/cart.js'
+import {products} from '../data/products.js'
 
 //generate html for all the saved products
 let productHTML = '';
@@ -66,7 +68,6 @@ forEach((button) => {
         //console.log(button.dataset.productName);  //turn data-product-name --> productName
 
         //add this data item to cart on click
-
         const pressedItemId = button.dataset.productId;
         let matchedInCart = '';
 
@@ -93,8 +94,6 @@ forEach((button) => {
         cart.forEach((item) => {
             totalQuantity += item.quantity;
         })
-
         document.querySelector('.js-cart-quantity').innerHTML = totalQuantity;
-        console.log(totalQuantity);
     });
 })

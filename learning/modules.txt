@@ -1,0 +1,16 @@
+Modules -   rather than using the same scope for all js files, we keep their scopes separate 
+            and import only the required dependencies explicitly.
+
+            This resolves the issue of naming conflicts, and manages dependencies better.
+            reusability, maintainability increases.
+
+Earlier we were importing all script files , that too in correct order, to run all the scripts successfully.
+Problem - shared global scope -> naming conflicts
+thus Modules -> separate contexts, only desired dependencies included.
+
+e.g. -> cart.js has a cart var, now if we declare the same cart variable in amazon.js, it will corupt the code.
+What if there were 10 more variables in cart? -> greater risks of collision. Thus we just import what we need.
+
+use -> include <type = "module"> in script tag of main js file.
+use export with exportable variables
+and inport them in the module type file.
