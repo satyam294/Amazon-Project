@@ -20,3 +20,8 @@ and inport them in the module type file.
 
 Of all the radio selectors (a type of input field) that share the same name, only one can be selected at any instant.
 So make sure to assign different names to radio selectors across different categgories.
+
+
+
+// NOTE: CSS selectors (ids and class names) cannot begin with a number
+solutions : escape the digit with unicode, use attribute selectors
