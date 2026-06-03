@@ -1,0 +1,29 @@
+DIFFERENT PAGES -> DIFFERENT JS CONTEXTS
+previous one destroyed
+
+
+whenever we refersh a file or switch to a different page, the current js context is destroyed and the 
+js for the new page is loaded and run (even ehrn they are using the same third module)
+
+to reuse the data of the current page on the next one -> save it to localStorage after each operation.
+
+
+products page -- checkout page --> use the cart.js module. 
+But when each one uses a different cart each time. To sync them -> use localstorage to save cart
+
+
+A useful mental model:
+
+One browser tab + one page load = one JavaScript world.
+Within that world, a module is loaded once and shared.
+Navigating to another page creates a new JavaScript world, 
+so modules are loaded again from scratch unless you persist data somewhere 
+(e.g., localStorage, cookies, server database, etc.).
+
+
+amazon.html  |||||||   checkout.html
+      `                    `
+        `               ` 
+          `          `
+             `     `
+           localStorage -> same cart reuse
