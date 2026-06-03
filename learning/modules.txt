@@ -14,3 +14,9 @@ What if there were 10 more variables in cart? -> greater risks of collision. Thu
 use -> include <type = "module"> in script tag of main js file.
 use export with exportable variables
 and inport them in the module type file.
+
+
+//radio buttons/ selectors
+
+Of all the radio selectors (a type of input field) that share the same name, only one can be selected at any instant.
+So make sure to assign different names to radio selectors across different categgories.
