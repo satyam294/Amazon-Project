@@ -1,5 +1,5 @@
 //import should be at the beginning of the code.
-import {cart} from '../data/cart.js'
+import {cart, addToCart} from '../data/cart.js'
 import {products} from '../data/products.js'
 
 //generate html for all the saved products
@@ -66,34 +66,19 @@ document.querySelectorAll('.js-add-to-cart').
 forEach((button) => {
     button.addEventListener('click', () => {
         //console.log(button.dataset.productName);  //turn data-product-name --> productName
-
-        //add this data item to cart on click
+        //add this data item to cart
         const pressedItemId = button.dataset.productId;
-        let matchedInCart = '';
-
-        cart.forEach((product) => {
-            if(product.id === pressedItemId){
-                matchedInCart = product;
-            }
-        });
+        addToCart(pressedItemId);
+        updateCartQuantity();
         
-        //if found in card, increase quantity by 1, else add the product object to the cart.
-        if(matchedInCart){
-            matchedInCart.quantity += 1;
-        } else{
-            cart.push({
-                id: pressedItemId,
-                quantity: 1
-            });
-        }
-        //console.log(cart);   //debug pointer: show the whole cart everytime a product is pressed
-
-        //update total quantity after adding
-        let totalQuantity = 0;
-
-        cart.forEach((item) => {
-            totalQuantity += item.quantity;
-        })
-        document.querySelector('.js-cart-quantity').innerHTML = totalQuantity;
     });
 })
+
+function updateCartQuantity(){
+    //update total quantity after adding
+    let totalQuantity = 0;
+    cart.forEach((item) => {
+        totalQuantity += item.quantity;
+    })
+    document.querySelector('.js-cart-quantity').innerHTML = totalQuantity;
+}
