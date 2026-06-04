@@ -15,13 +15,14 @@ use -> include <type = "module"> in script tag of main js file.
 use export with exportable variables
 and inport them in the module type file.
 
+Modules act as a boundary between two js codes.
+Only the components with 'export' can be used in the other code.
+The rest are confined to one program only.
+Thus, prevent global namespace pollution.
 
-//radio buttons/ selectors
+Modules create their own scope.
+Variables, functions, and classes declared inside a module are private to that module by default.
+Only the members explicitly marked with export can be accessed by other modules through import.
+This prevents accidental sharing of variables and helps avoid global namespace pollution.
 
-Of all the radio selectors (a type of input field) that share the same name, only one can be selected at any instant.
-So make sure to assign different names to radio selectors across different categgories.
 
-
-
-// NOTE: CSS selectors (ids and class names) cannot begin with a number
-solutions : escape the digit with unicode, use attribute selectors
