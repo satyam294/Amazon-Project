@@ -1,4 +1,4 @@
-import { cart, removeFromCart, updateDeliveryOption } from '../../data/cart.js';
+import { cart, getCartQuantity, removeFromCart, updateDeliveryOption } from '../../data/cart.js';
 import { products, getProduct } from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
@@ -98,6 +98,12 @@ export function renderOrderSummary(){
       return html;
   }
   document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
+
+   //correctly display the number of items in the header
+    document.querySelector('.js-checkout-header-middle-section')
+    .innerHTML = 
+    `Checkout (<a class="return-to-home-link"
+    href="amazon.html">${getCartQuantity()} items</a>)`
 
   //add event listeners to delete links
   document.querySelectorAll('.js-delete-link')
