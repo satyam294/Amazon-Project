@@ -1,0 +1,10 @@
+MVC - desing pattern
+
+M -> Model : keep a data model of the project in the storage, which is available to all the modules of the project
+
+V -> View : Develop the UI based on the stored model/ data
+
+C -> Controller : Whenever user interacts with the view, update the model accordingly and re-render the view
+
+
+This ensures the view is always in correspondence with the model/data of the project
