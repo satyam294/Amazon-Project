@@ -49,6 +49,21 @@ export function removeFromCart(productId){
     saveCart();
 }
 
+// update the delivery option
+export function updateDeliveryOption(cartItemId, newOption){
+    let cartItem;
+    cart.forEach((item) => {
+        if(item.id === cartItemId){
+            cartItem = item;
+            return;
+        }
+    })
+
+    if(!cartItem) return;
+    cartItem.deliveryOptionId = newOption;
+    saveCart();
+}
+
 //save the cart to local storage
 function saveCart(){
     localStorage.setItem('cart', JSON.stringify(cart));
