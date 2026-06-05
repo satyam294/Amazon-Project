@@ -64,6 +64,16 @@ export function updateDeliveryOption(cartItemId, newOption){
     saveCart();
 }
 
+//get cart quantity
+export function getCartQuantity(){
+    let total = 0;
+    cart.forEach((item) => {
+        total += item.quantity;
+    })
+    return total;
+}
+
+
 //save the cart to local storage
 function saveCart(){
     localStorage.setItem('cart', JSON.stringify(cart));
