@@ -24,7 +24,9 @@ export function renderOrderSummary(){
 
       //generate the html for each cart item using fetched product details
       cartSummaryHTML += 
-      `<div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
+      `<div class="cart-item-container
+        js-cart-item-container
+        js-cart-item-container-${matchingProduct.id}">
           <div class="delivery-date">
             Delivery date: ${dateString}
           </div>
@@ -40,14 +42,16 @@ export function renderOrderSummary(){
               <div class="product-price">
                 $${formatCurrency(matchingProduct.priceCents)}
               </div>
-              <div class="product-quantity">
+              <div class="product-quantity
+                js-product-quantity-${matchingProduct.id}">
                 <span>
                   Quantity: <span class="quantity-label">${cartItem.quantity}</span>
                 </span>
                 <span class="update-quantity-link link-primary">
                   Update
                 </span>
-                <span data-product-id="${matchingProduct.id}" class="delete-quantity-link link-primary js-delete-link">
+                <span data-product-id="${matchingProduct.id}" class="delete-quantity-link link-primary js-delete-link
+                  js-delete-quantity-link-${matchingProduct.id}">
                   Delete
                 </span>
               </div>
@@ -99,11 +103,13 @@ export function renderOrderSummary(){
   }
   document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
 
-   //correctly display the number of items in the header
-    document.querySelector('.js-checkout-header-middle-section')
-    .innerHTML = 
-    `Checkout (<a class="return-to-home-link"
-    href="amazon.html">${getCartQuantity()} items</a>)`
+  
+  //correctly display the number of items in the header
+  // This code should not be here: It is not the part of orderSummary!!!!!
+  document.querySelector('.js-checkout-header-middle-section')
+  .innerHTML = 
+  `Checkout (<a class="return-to-home-link"
+  href="amazon.html">${getCartQuantity()} items</a>)`
 
   //add event listeners to delete links
   document.querySelectorAll('.js-delete-link')
