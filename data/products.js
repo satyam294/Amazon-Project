@@ -50,8 +50,41 @@ class Clothing extends Product {
       <a href="${this.sizeChartLink}" target="_blank">Size Chart</a>
     `; 
   }
-
 }
+
+/*
+const date = new Date();
+console.log(date);
+console.log(date.toLocaleTimeString());
+*/
+
+/*
+console.log(this);  // undefined: no object to point to
+
+const obj2 = {
+  a: 2,
+  b: this.a      // error: object not created yet! this is undefined
+};               // can only be used within a scope inside an object
+*/
+
+/*
+function logThis() {
+  console.log(this);   // 'this' inside a regular function is undefined but points to object inside a method
+}
+logThis();
+logThis.call('hello');   //same as normal call -> parameter defined value of this
+
+//arrow functions do not change the value of 'this'
+
+const obj3 = {
+  method: () => {
+    console.log(this);     //a regular function would print obj3
+  }                        // but arrow fns use the outside value of 'this'
+};
+obj3.method();  // undefined
+
+*/
+
 
 export const products = [
     {
