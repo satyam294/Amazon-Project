@@ -1,81 +1,87 @@
 //import should be at the beginning of the code.
 import {cart, addToCart} from '../data/cart.js';
-import {products} from '../data/products.js';
+import {products, loadProducts} from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 
-//generate html for all the saved products
-let productHTML = '';
+loadProducts(renderProductsGrid);
 
-products.forEach((product) => {
-    productHTML += `<div class="product-container">
-        <div class="product-image-container">
-            <img class="product-image"
-            src="${product.image}">
-        </div>
+function renderProductsGrid() {
+    //generate html for all the saved products
+    let productHTML = '';
 
-        <div class="product-name limit-text-to-2-lines">
-            ${product.name}
-        </div>
-
-        <div class="product-rating-container">
-            <img class="product-rating-stars"
-            src="${product.getStarsUrl()}">
-            <div class="product-rating-count link-primary">
-            ${product.rating.count}
+    products.forEach((product) => {
+        productHTML += `<div class="product-container">
+            <div class="product-image-container">
+                <img class="product-image"
+                src="${product.image}">
             </div>
-        </div>
 
-        <div class="product-price">
-            ${product.getPrice()}  
-        </div>
+            <div class="product-name limit-text-to-2-lines">
+                ${product.name}
+            </div>
 
-        <div class="product-quantity-container">
-            <select>
-            <option selected value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            </select>
-        </div>
+            <div class="product-rating-container">
+                <img class="product-rating-stars"
+                src="${product.getStarsUrl()}">
+                <div class="product-rating-count link-primary">
+                ${product.rating.count}
+                </div>
+            </div>
 
-        ${product.extraInfoHTML()}
-        
-        <div class="product-spacer"></div>
+            <div class="product-price">
+                ${product.getPrice()}  
+            </div>
 
-        <div class="added-to-cart">
-            <img src="images/icons/checkmark.png">
-            Added
-        </div>
+            <div class="product-quantity-container">
+                <select>
+                <option selected value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                </select>
+            </div>
 
-        <button class="add-to-cart-button button-primary js-add-to-cart"
-        data-product-id="${product.id}">
-            Add to Cart
-        </button>
-        </div>
-    `
-})
+            ${product.extraInfoHTML()}
+            
+            <div class="product-spacer"></div>
 
-//fetch container to attach all products
-document.querySelector('.js-products-grid').innerHTML = productHTML;
+            <div class="added-to-cart">
+                <img src="images/icons/checkmark.png">
+                Added
+            </div>
 
-//make add to cart interactive
-document.querySelectorAll('.js-add-to-cart').
-forEach((button) => {
-    button.addEventListener('click', () => {
-        //console.log(button.dataset.productName);  //turn data-product-name --> productName
-        //add this data item to cart
-        const pressedItemId = button.dataset.productId;
-        addToCart(pressedItemId);
-        updateCartQuantity();
-        
-    });
-})
+            <button class="add-to-cart-button button-primary js-add-to-cart"
+            data-product-id="${product.id}">
+                Add to Cart
+            </button>
+            </div>
+        `
+    })
+
+    //fetch container to attach all products
+    document.querySelector('.js-products-grid').innerHTML = productHTML;
+
+    //make add to cart interactive
+    document.querySelectorAll('.js-add-to-cart').
+    forEach((button) => {
+        button.addEventListener('click', () => {
+            //console.log(button.dataset.productName);  //turn data-product-name --> productName
+            //add this data item to cart
+            const pressedItemId = button.dataset.productId;
+            addToCart(pressedItemId);
+            updateCartQuantity();
+            
+        });
+    })
+
+}
+
 
 function updateCartQuantity(){
     //update total quantity after adding
