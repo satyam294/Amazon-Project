@@ -87,6 +87,28 @@ obj3.method();  // undefined
 
 export let products = [];
 
+//fetch is a promise object only - sends request and waits - packs the response in resolve
+export function loadProductsFetch(){
+  const promise = fetch('https://supersimplebackend.dev/products')
+
+  .then((response) => {
+    return response.json();  //it is also a promise so return
+  })
+
+  .then((productsData) => {
+      products = productsData.map((productDetails) => {
+      if(productDetails.type === 'clothing'){
+        return new Clothing(productDetails);
+      }
+      return new Product(productDetails);
+    });
+  })
+
+  return promise;
+}
+// loadProductsFetch();
+
+
 export function loadProducts(fun) {
   const xhr = new XMLHttpRequest();
 
