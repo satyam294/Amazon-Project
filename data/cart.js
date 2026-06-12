@@ -88,3 +88,15 @@ export function getCartQuantity(){
 function saveCart(){
     localStorage.setItem('cart', JSON.stringify(cart));
 }
+
+export function loadCart(fun) {
+  const xhr = new XMLHttpRequest();
+
+  xhr.addEventListener('load', () => {
+    console.log(xhr.response);
+    fun();  //marks the end of our work
+  });
+
+  xhr.open('GET', 'https://supersimplebackend.dev/cart');
+  xhr.send();
+}
