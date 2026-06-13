@@ -104,6 +104,10 @@ export function loadProductsFetch(){
     });
   })
 
+  .catch(() => {
+    console.log('Error occured try again')
+  })
+
   return promise;
 }
 // loadProductsFetch();
@@ -123,9 +127,14 @@ export function loadProducts(fun) {
     fun(); //render the loaded projects on the screen
   });
 
+  xhr.addEventListener('error', () => {
+    console.log('error is here. Please try again later!')
+  })
+
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
 }
+
 /*
 export const products = [
     {
