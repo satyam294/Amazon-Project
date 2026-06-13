@@ -11,12 +11,12 @@ class Cart {
         this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
         if(!this.cartItems){
             this.cartItems = [{
-                id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6", 
+                productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6", 
                 quantity: 2,
                 deliveryOptionId: '1'
             },
             {
-                id: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+                productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
                 quantity: 1,
                 deliveryOptionId: '2'
             }];
@@ -30,7 +30,7 @@ class Cart {
     addToCart(pressedItemId){
         let matchedInCart;
         this.cartItems.forEach((product) => {
-            if(product.id === pressedItemId){
+            if(product.productId === pressedItemId){
                 matchedInCart = product;
             }
         });
@@ -39,7 +39,7 @@ class Cart {
             matchedInCart.quantity += 1;
         } else{
             this.cartItems.push({
-                id: pressedItemId,
+                productId: pressedItemId,
                 quantity: 1,
                 deliveryOptionId: '1'
             });
@@ -51,7 +51,7 @@ class Cart {
         let newCart = [];
 
         this.cartItems.forEach((item) => {
-            if(item.id !== productId){
+            if(item.productId !== productId){
                 newCart.push(item);
             }
         })
@@ -63,7 +63,7 @@ class Cart {
     updateDeliveryOption(cartItemId, newOption){
         let match;
         this.cartItem.forEach((item) => {
-            if(item.id === cartItemId){
+            if(item.productId === cartItemId){
                 match = item;
                 return;
             }

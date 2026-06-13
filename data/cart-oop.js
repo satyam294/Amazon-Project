@@ -32,7 +32,7 @@ function Cart(localStorageKey){
         addToCart(pressedItemId){
             let matchedInCart;
             this.cartItems.forEach((product) => {
-                if(product.id === pressedItemId){
+                if(product.productId === pressedItemId){
                     matchedInCart = product;
                 }
             });
@@ -42,7 +42,7 @@ function Cart(localStorageKey){
                 matchedInCart.quantity += 1;
             } else{
                 this.cartItems.push({
-                    id: pressedItemId,
+                    productId: pressedItemId,
                     quantity: 1,
                     deliveryOptionId: '1'
                 });
@@ -55,7 +55,7 @@ function Cart(localStorageKey){
             let newCart = [];
 
             this.cartItems.forEach((item) => {
-                if(item.id !== productId){
+                if(item.productId !== productId){
                     newCart.push(item);
                 }
             })
@@ -68,7 +68,7 @@ function Cart(localStorageKey){
         updateDeliveryOption(cartItemId, newOption){
             let match;
             this.cartItem.forEach((item) => {
-                if(item.id === cartItemId){
+                if(item.productId === cartItemId){
                     match = item;
                     return;
                 }

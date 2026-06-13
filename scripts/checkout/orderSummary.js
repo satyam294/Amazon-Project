@@ -10,8 +10,8 @@ export function renderOrderSummary(){
   let cartSummaryHTML = '';
 
   cart.forEach((cartItem) => { 
-      // for each product in cart, extract its complete details from products using the id.
-      const matchingProduct = getProduct(cartItem.id);
+      // for each product in cart, extract its complete details from products using the productId.
+      const matchingProduct = getProduct(cartItem.productId);
       if (!matchingProduct) return;  //break
 
       const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
