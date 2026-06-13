@@ -1,0 +1,42 @@
+*** Asynchronous operations are tasks whose completion time is unknown, 
+*** so JavaScript starts them and continues executing other code instead of waiting.
+
+Asynchronous -> Not happening in order  -> something that does not occur right away. (e.g. loading/ reading a file)
+
+There can be parts of code/ fucntionality that are dependent on that Asynchronous job.(e.g. displaying result after loading a file)
+
+We need some way of handling that Asynchronous job and the tasks dependent on it.
+
+3 major ways : 
+
+1- Callbacks  -> pass all the related tasks as a callback to the Asynchronous function.
+                perform the Asynchronous task inside a fucntion. When that completes running, run the all the related 
+                tasks that are passed inside the callback for this function.
+
+
+2- Promises  -> Cleaner Code! A Promise represents the future result of an asynchronous operation
+                and contains the Asynchronous task.
+                Whenever that task occurs, it might run successfully or fail somehow and the promise attains that value.
+
+                when it runs successfully -> resolve(<result>) is called at the end.
+                when it fails -> reject(<error details>) is called.
+
+                we trace the results of the primise using 
+
+                a- .then() -> this will get the result of the promise if it was successfully
+                b .catch() -> it gets the error details, if promise fails
+
+                So we can group together Asynchronous job and the tasks dependent on it using Promise, then and catch.
+
+3 - async/ await -> cleanest code !!!
+
+            -> Group the Asynchronous job and the related tasks inside a function.
+               write the code as if it is synchronous. One statement after the other.
+
+               Declare the function as async, and write await in front of the job that is Asynchronous.
+
+               Now the code waits for that task to complete and then moves to the next lines.
+
+               what if the job fails? use try{} catch(){} to handle failures.
+
+

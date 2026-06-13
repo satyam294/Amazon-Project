@@ -1,0 +1,37 @@
+Asynchronous operations are tasks that take an unknown amount of time
+(API calls, file reading, timers, database queries, etc.).
+
+Instead of blocking the program while waiting, JavaScript starts the task
+and continues executing other code.
+
+To run code after the task finishes, JavaScript provides:
+
+1. Callbacks
+   - Pass a function to be executed later.
+   - Can lead to callback hell.
+
+2. Promises
+   - Represent the future result of an asynchronous operation.
+   - Can be Pending, Fulfilled, or Rejected.
+   - Use .then() and .catch() to handle results.
+
+3. Async/Await
+   - Cleaner syntax built on top of Promises.
+   - Lets asynchronous code look synchronous.
+   - Use await to pause the async function until a Promise settles.
+   - Use try/catch for error handling.
+
+
+One More Important Concept: Await Only Works With Promises
+await fetchData();
+
+works because:
+fetchData()
+returns a Promise.
+
+If something doesn't return a Promise:
+
+const x = 5;
+await x;
+
+it is effectively meaningless.
