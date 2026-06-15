@@ -89,6 +89,16 @@ function saveCart(){
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+//update cart quantity
+export function updateCartQuantity(){
+    //update total quantity after adding
+    let totalQuantity = 0;
+    cart.forEach((item) => {
+        totalQuantity += item.quantity;
+    })
+    document.querySelector('.js-cart-quantity').innerHTML = totalQuantity;
+}
+
 export function loadCart(fun) {
   const xhr = new XMLHttpRequest();
 

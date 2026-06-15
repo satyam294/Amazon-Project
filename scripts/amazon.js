@@ -1,9 +1,14 @@
 //import should be at the beginning of the code.
-import {cart, addToCart} from '../data/cart.js';
-import {products, loadProducts} from '../data/products.js';
+import {cart, addToCart, updateCartQuantity} from '../data/cart.js';
+import {products, loadProductsFetch} from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 
-loadProducts(renderProductsGrid);
+loadProductsFetch().then(() => {
+    updateCartQuantity();
+    renderProductsGrid();
+}).catch(() => {
+    console.log('Product loading failed!');
+})
 
 function renderProductsGrid() {
     //generate html for all the saved products
@@ -80,14 +85,4 @@ function renderProductsGrid() {
         });
     })
 
-}
-
-
-function updateCartQuantity(){
-    //update total quantity after adding
-    let totalQuantity = 0;
-    cart.forEach((item) => {
-        totalQuantity += item.quantity;
-    })
-    document.querySelector('.js-cart-quantity').innerHTML = totalQuantity;
 }

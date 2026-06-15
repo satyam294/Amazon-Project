@@ -2,6 +2,7 @@ import { orders } from "../data/orders.js";
 import { formatDate } from "./utils/formatDate.js";
 import { formatCurrency } from "./utils/money.js";
 import { loadProductsFetch, getProduct } from "../data/products.js";
+import { addToCart, updateCartQuantity } from "../data/cart.js";
 
 function generateOrderDetails(order) {
     let html = '';
@@ -44,7 +45,8 @@ function generateOrderDetails(order) {
               <div class="product-quantity">
                 Quantity: ${productDetails.quantity}
               </div>
-              <button class="buy-again-button button-primary">
+              <button class="buy-again-button button-primary js-buy-again-button"
+                data-product-id=${product.id} >
                 <img class="buy-again-icon" src="images/icons/buy-again.png">
                 <span class="buy-again-message">Buy it again</span>
               </button>
@@ -76,10 +78,17 @@ function renderOrdersPage() {
     });
 
     document.querySelector('.js-orders-grid').innerHTML = ordersHTML;
+    document.querySelectorAll('.js-buy-again-button').forEach((button) => {
+      button.addEventListener('click', () => {
+        addToCart(button.dataset.productId);
+        updateCartQuantity();
+      })
+    });
 }
 
 loadProductsFetch().then(() => {
     renderOrdersPage();
+    updateCartQuantity();
 }).catch(() => {
     console.log('Loading products failed!');
 })
