@@ -49,6 +49,7 @@ function generateOrderDetails(order) {
                 data-product-id=${product.id} >
                 <img class="buy-again-icon" src="images/icons/buy-again.png">
                 <span class="buy-again-message">Buy it again</span>
+                <span class="buy-again-success">&check; Added</span>
               </button>
             </div>
 
@@ -78,10 +79,28 @@ function renderOrdersPage() {
     });
 
     document.querySelector('.js-orders-grid').innerHTML = ordersHTML;
+
     document.querySelectorAll('.js-buy-again-button').forEach((button) => {
       button.addEventListener('click', () => {
         addToCart(button.dataset.productId);
         updateCartQuantity();
+        
+        // make the buy agaib button interactive
+        const buyAgainMessage = button.querySelector('.buy-again-message');
+        const successMessage = button.querySelector('.buy-again-success');
+        const buyAgainIcon = button.querySelector('.buy-again-icon');
+
+        buyAgainMessage.classList.add('hidden');
+        buyAgainIcon.classList.add('hidden');
+        successMessage.classList.add('buy-again-success-visible');
+        
+        //remove styles after 1.5 sec
+        setTimeout(() => {
+          buyAgainMessage.classList.remove('hidden');
+          buyAgainIcon.classList.remove('hidden');
+          successMessage.classList.remove('buy-again-success-visible');
+        }, 1500);
+
       })
     });
 }
