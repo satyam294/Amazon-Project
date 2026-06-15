@@ -51,7 +51,7 @@ function generateOrderDetails(order) {
             </div>
 
             <div class="product-actions">
-              <a href="tracking.html?orderId=${order.id}&producId=${product.id}">  <!-- adding info to the url-->
+              <a href="tracking.html?orderId=${order.id}&productId=${product.id}">  <!-- adding info to the url-->
                 <button class="track-package-button button-secondary">
                   Track package
                 </button>

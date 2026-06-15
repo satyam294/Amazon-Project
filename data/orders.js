@@ -19,11 +19,13 @@ export function getProductFromOrder(productId, orderId) {
     const order = getOrder(orderId);
     let matchingProduct;
 
-    order.products.forEach((product) => {
-        if(product.productId === productId){
-            matchingProduct = product;
-        }
-    });
+    if (order) {
+        order.products.forEach((product) => {
+            if(product.productId === productId){
+                matchingProduct = product;
+            }
+        });
+    }
     return matchingProduct;
 }
 
