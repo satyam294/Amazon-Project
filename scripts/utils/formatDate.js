@@ -1,10 +1,17 @@
-export function formatDate(dateString) {
-    const date = new Date(dateString);
+export function formatDate(dateString, mode = 'month') {
+  const date = new Date(dateString);
 
-    const formatted = date.toLocaleDateString("en-US", {
-        month: "long",
-        day: "numeric"
-    });
+  const options = mode === 'day'
+    ? {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric'
+      }
+    : {
+        month: 'long',
+        day: 'numeric'
+      };
 
-    return formatted;
+  return date.toLocaleDateString('en-US', options);
 }
+
