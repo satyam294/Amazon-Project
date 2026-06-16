@@ -1,7 +1,8 @@
 // render tracking page based on the url
+import { updateCartQuantity } from "../data/cart.js";
 import { getProductFromOrder } from "../data/orders.js";
 import { loadProductsFetch, getProduct } from "../data/products.js";
-import { formatDate } from "../scripts/utils/formatDate.js";
+import { formatDate } from "./utils/formatDate.js";
 
 function renderTrackingPage(){
     const url = new URL(window.location.href);
@@ -52,6 +53,7 @@ function renderTrackingPage(){
 }
 
 loadProductsFetch().then(() => {
+    updateCartQuantity();
     renderTrackingPage();
 }).catch(() => {
     console.log('Products not available! Failed to load tracking page!');
