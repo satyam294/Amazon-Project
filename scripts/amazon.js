@@ -15,7 +15,8 @@ function renderProductsGrid() {
     let productHTML = '';
 
     products.forEach((product) => {
-        productHTML += `<div class="product-container">
+        productHTML += 
+        `<div class="product-container js-product-container">
             <div class="product-image-container">
                 <img class="product-image"
                 src="${product.image}">
@@ -37,7 +38,8 @@ function renderProductsGrid() {
                 ${product.getPrice()}  
             </div>
 
-            <div class="product-quantity-container">
+            <div class="product-quantity-container 
+                js-product-quantity-container">
                 <select>
                 <option selected value="1">1</option>
                 <option value="2">2</option>
@@ -50,7 +52,7 @@ function renderProductsGrid() {
                 <option value="9">9</option>
                 <option value="10">10</option>
                 </select>
-            </div>
+            </div>  
 
             ${product.extraInfoHTML()}
             
@@ -65,7 +67,7 @@ function renderProductsGrid() {
             data-product-id="${product.id}">
                 Add to Cart
             </button>
-            </div>
+        </div>
         `
     })
 
@@ -78,10 +80,14 @@ function renderProductsGrid() {
         button.addEventListener('click', () => {
             //console.log(button.dataset.productName);  //turn data-product-name --> productName
             //add this data item to cart
+            const container = button.closest('.js-product-container');
+            const quantity =
+            container.querySelector('.js-product-quantity-container select').value;
+
             const pressedItemId = button.dataset.productId;
-            addToCart(pressedItemId);
+            addToCart(pressedItemId, Number(quantity));
             updateCartQuantity();
-            
+
         });
     })
 
