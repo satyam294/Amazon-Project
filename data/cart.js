@@ -24,7 +24,7 @@ export function loadFromStorage(){
 }
 
 // add products to cart
-export function addToCart(pressedItemId){
+export function addToCart(pressedItemId, qty=1){
     let matchedInCart = '';
     cart.forEach((product) => {
         if(product.productId === pressedItemId){
@@ -34,11 +34,11 @@ export function addToCart(pressedItemId){
     
     //if found in card, increase quantity by 1, else add the product object to the cart.
     if(matchedInCart){
-        matchedInCart.quantity += 1;
+        matchedInCart.quantity += qty;
     } else{
         cart.push({
             productId: pressedItemId,
-            quantity: 1,
+            quantity: qty,
             deliveryOptionId: '1'
         });
     }
